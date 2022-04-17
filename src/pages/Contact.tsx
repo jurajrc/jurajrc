@@ -20,8 +20,8 @@ const Contact: React.FC = () => {
   
   function sendEmail() {
     emailjs.sendForm(
-        'service_y91bs9a', 
-        'template_bi8w7le', 
+        `${process.env.REACT_APP_EMAIL_SERVIS}`, 
+        `${process.env.REACT_APP_EMAIL_TEMPLATE}`, 
         '#contact-form', 
         'user_d9OyGgUFBHz4YCiT8oJlH')
         .then(res=>{
