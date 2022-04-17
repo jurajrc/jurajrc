@@ -74,6 +74,7 @@ const StyleSection = styled(motion.section) `
     background-size: cover;
     background-attachment: fixed;
     overflow-x: hidden;
+    min-height: 100vh;
 
     .foto-section {
         width: 80%;

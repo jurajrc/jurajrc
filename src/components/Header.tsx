@@ -1,9 +1,7 @@
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
-import { mixins } from './Theme'
+import styled from 'styled-components'
 // images
 import back_top from '../assets/images/back-top-0.jpg'
-import back_top_s from '../assets/images/back-top-6000-2s.jpg'
 import logo_imac from '../assets/images/IMACLogosmall.png'
 
 const Header: React.FC = () => {

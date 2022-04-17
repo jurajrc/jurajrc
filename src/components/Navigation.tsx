@@ -1,11 +1,11 @@
 import React from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 // Style
 import styled from 'styled-components'
 import { mixins } from './Theme'
 
 const Navigation: React.FC = () => {
-    const {pathname} = useLocation()
+    //const {pathname} = useLocation()
   return (
     <StyleNav>
         <ul>
