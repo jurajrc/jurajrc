@@ -7,7 +7,6 @@ import Header from './components/Header';
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
 import About from './pages/About';
-import Articles from './pages/Articles';
 import MyModels from './pages/MyModels';
 import MyProjects from './pages/MyProjects';
 import ForSale from './pages/ForSale';
@@ -18,6 +17,9 @@ import Footer from './components/Footer';
 import './App.css';
 // Animation
 import { AnimatePresence } from 'framer-motion'
+import Imac from './pages/Imac';
+import HowToStart from './pages/HowToStart';
+import Results from './pages/Results';
 
 function App() {
   const [showButtonTop, setShowButtonTop] = useState<boolean>(false)
@@ -42,7 +44,9 @@ function App() {
         <Routes location={location} key={location.pathname} >
           <Route path='/' element={ <Home /> } />
           <Route path='/about' element={ <About /> } />
-          <Route path='/articles' element={ <Articles /> } />
+          <Route path='/imac' element={ <Imac /> } />
+          <Route path='/ako_zacat' element={ <HowToStart /> } />
+          <Route path='/uspechy' element={ <Results /> } />
           <Route path='/my_models' element={ <MyModels /> } />
           <Route path='/my_projects' element={ <MyProjects /> } />
           <Route path='/for_sale' element={ <ForSale /> } />

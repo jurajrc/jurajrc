@@ -27,7 +27,7 @@ const Home: React.FC = () => {
                         <img src={item.image_large} alt={item.text} title={item.text} />
                         <div className="image-text">
                             <p
-                                style={{animationDuration: `${(item.text.length / 3).toFixed(1)}s` }}
+                                style={{animationDuration: `${(item.text.length / 2.5).toFixed(1)}s` }}
                             >{item.text}</p>
                         </div>
                     </div>
@@ -51,7 +51,7 @@ const goText = keyframes`
         opacity: 0;
     }
     5% {
-		transform: translateX(100%);
+		transform: translateX(80%);
 		opacity: 0;
 	}
 	15% {
@@ -61,7 +61,7 @@ const goText = keyframes`
 		opacity: 1;
 	}
 	95% {
-		transform: translateX(-100%);
+		transform: translateX(-80%);
 		opacity: 0;
 	}
     100% {
@@ -97,6 +97,9 @@ const StyleSection = styled(motion.section) `
                 top: 2em;
                 left: 50%;
                 transform: translateX(-50%);
+                @media (max-width: 900px) {
+                    top: 1em;
+                }
                 @media (max-width: 500px) {
                     top: .5em;
                 }
@@ -105,9 +108,9 @@ const StyleSection = styled(motion.section) `
                     letter-spacing: 1px;
                     padding: .5em 1em;
                     border-radius: .5em;
-                    background: rgba(255, 255, 255, 0.6);
+                    background: rgba(255, 255, 255, 0.4);
                     animation: ${goText} linear infinite;
-                    @media (max-width: 600px) {
+                    @media (max-width: 800px) {
                         font-size: 0.8em;
                     }
                     @media (max-width: 500px) {
