@@ -1,8 +1,9 @@
 
-enum ActionType {
+export enum ActionType {
     TOGGLEOPEN_NAV = 'TOGGLEOPEN_NAV',
     OPEN = 'OPEN',
     CLOSE = 'CLOSE',
+    TOGGLESHOWNAV = 'TOGGLESHOWNAV',
 }
 
 interface actionToggle {

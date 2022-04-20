@@ -7,7 +7,7 @@ import { RootState } from '..'
 const Burger: React.FC = () => {
         const dispatch = useDispatch()
     const isOpenNav = useSelector((state: RootState) => state.isOpenNav)
-    console.log(isOpenNav);
+    //console.log(isOpenNav);
     
   return (
       
@@ -28,6 +28,7 @@ const StyleBurger = styled.div`
     background: #2f313c;
     //top: -0.2em;
     left: 50%;
+    transform: translateX(-50%);
     cursor: pointer;
     transition: 600ms all ease;
     display: none;
