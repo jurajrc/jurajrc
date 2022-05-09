@@ -4,13 +4,18 @@ import Burger from './Burger'
 // Style
 import styled from 'styled-components'
 import { mixins } from './Theme'
+import { motion, AnimatePresence } from 'framer-motion'
 // State redux
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '..'
 
+interface IState {
+    hoverSmenu: boolean
+}
+
 const Navigation: React.FC = () => {
     //const {pathname} = useLocation()
-    const [hoverSmenu, setHoverSmenu] = useState(false)
+    const [hoverSmenu, setHoverSmenu] = useState<IState['hoverSmenu']>(false)
 
     const isOpenNav = useSelector((state:RootState) => state.isOpenNav)
     const dispatch = useDispatch()
@@ -41,6 +46,7 @@ const Navigation: React.FC = () => {
     const closeNav = () => {
       if(width <= 810) {
           dispatch({type: 'CLOSE'})
+          document.body.style.overflow = 'visible'
       }
     }
 
@@ -50,7 +56,9 @@ const Navigation: React.FC = () => {
 
             <ul className='menu'>
                 <li>
-                    <NavLink onClick={closeNav} to="/">Home</NavLink>
+                    
+                        <NavLink onClick={closeNav} to="/">Home</NavLink>
+                    
                 </li>
                 <li>
                     <NavLink onClick={closeNav} to="/about">O mne</NavLink>
@@ -61,21 +69,24 @@ const Navigation: React.FC = () => {
                 >
                     <a  href="#"
                     onClick={(e) => e.preventDefault()} 
-                    
-                    >Články</a>
-                    {hoverSmenu && (
-                        <ul className='submenu'>
-                            <li>
-                                <NavLink onClick={closeNav} to="/imac" >Zostavy IMAC</NavLink>
-                            </li>
-                            <li>
-                                <NavLink onClick={closeNav} to="/ako_zacat" >Ako začať</NavLink>
-                            </li>
-                            <li>
-                                <NavLink onClick={closeNav} to="/uspechy" >Úspechy</NavLink>
-                            </li>
-                        </ul>
-                    )}
+                    >
+                        Články
+                    </a>
+                    <AnimatePresence>
+                        {hoverSmenu && (
+                            <ul className='submenu'>
+                                <motion.li initial={{x:150}} animate={{x: 0, transition: {duration: .5}}} exit={{x: 150, opacity: 0}}>
+                                    <NavLink onClick={closeNav} to="/imac" >Zostavy IMAC</NavLink>
+                                </motion.li>
+                                <motion.li initial={{x:150}} animate={{x: 0, transition: {duration: .5,delay: .1}}} exit={{x: 150, opacity: 0, transition: {duration: .5,delay: .1}}}>
+                                    <NavLink onClick={closeNav} to="/ako_zacat" >Ako začať</NavLink>
+                                </motion.li>
+                                <motion.li initial={{x:150}} animate={{x: 0, transition: {duration: .5, delay: .2}}} exit={{x: 150, opacity: 0, transition: {duration: .5,delay: .2}}}>
+                                    <NavLink onClick={closeNav} to="/uspechy" >Úspechy</NavLink>
+                                </motion.li>
+                            </ul>
+                        )}
+                    </AnimatePresence>
                 </li>
                 <li>
                     <NavLink onClick={closeNav} to="/my_models">Moje modely</NavLink>
@@ -92,7 +103,9 @@ const Navigation: React.FC = () => {
             </ul>
 
         )}
-        <Burger />
+
+        <Burger setHoverSmenu={setHoverSmenu} sizeWidth={width} />
+
     </StyleNav>
   )
 }
@@ -100,7 +113,7 @@ const StyleNav = styled.nav`
     width: 100%;
     position: relative;
     @media (max-width: 810px) {
-        min-height: 1em;
+        min-height: 2em;
     }
 
     .menu {
@@ -118,6 +131,12 @@ const StyleNav = styled.nav`
             background: #2f313c;
             z-index: 8;
             flex-direction: column;
+            align-items: start;
+            justify-content: flex-start;
+            margin: 0;
+            padding-left: 1em;
+            padding-top: 2em;
+            
             li {
                 margin: 1em 0;
             }
@@ -159,6 +178,8 @@ const StyleNav = styled.nav`
                 flex-direction: column;
                 align-items: start;
                 z-index: 10;
+                overflow: hidden;
+                padding-bottom: 1em;
                 
                 li {
                     margin-top: 1.4em;
@@ -169,10 +190,23 @@ const StyleNav = styled.nav`
                         border-radius: 2px;
                     }
                 }
+                @media (max-width: 810px) {
+                    top: -1.2em;
+                    left: 4em;
+                    padding-left: 4em;
+
+                    li {
+                        margin-top: 1.05em;
+                    }
+
+                }
             }
             
         }
     }
+`
+const Hidden = styled(motion.div)`
+    overflow: hidden;
 `
 
 export default Navigation

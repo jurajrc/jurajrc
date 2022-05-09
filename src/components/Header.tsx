@@ -52,8 +52,25 @@ const StyleHeader = styled.header`
                 width: 6em;
                 height: auto;
             }
+            @media (max-width: 810px) {
+                width: 4em;
+                img {
+                    width: 4em;
+                }
+            }
+            @media (max-width: 550px) {
+                width: 3em;
+                img {
+                    width: 3em;
+                }
+            }
         }
-        .a2 { padding-top: 0.5em; }
+        .a2 { 
+            padding-top: 0.5em; 
+            @media (max-width: 550px) {
+                padding-top: 0.2em;
+            }
+        }
     }
 
     
